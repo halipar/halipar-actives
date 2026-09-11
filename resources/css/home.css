@@ -1,0 +1,152 @@
+html {
+    background-color: #ffeded;
+}
+
+* {
+    color: #3f3e3e ;
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #363333;
+}
+
+.registrations-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ecd8d8;
+    gap: 150px;
+
+    .register {
+        height: 480px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        background-color: #ecd8d8;
+        border: solid 1px #fff;
+        border-radius: 20px;
+        box-shadow: 15px 15px 15px -1px #0000007a;
+        justify-content: center;
+        align-items: center;
+
+        .register-title {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            font-weight: bold;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(15px);
+            font-size: 1.6rem;
+            
+            
+        }
+
+        .register-form {
+            width: 80%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+
+            label{
+                font-size: 1.2rem;
+                font-weight:bold;
+                
+            }
+
+            button{
+                background-color: rgb(119, 119, 119);
+                padding: 10px;
+                text-align: center;
+                transform: translateY(25px);
+                border-radius: 8px;
+                align-self: self-start;
+                color: #fff;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+            button:hover{
+                background-color: rgb(160, 159, 159);
+                cursor: pointer;
+                box-shadow: 0px 0px 2px 2px #0000007a;
+            }
+
+            .code-input {
+                width: 100%;
+                transform: translateY(30px);
+
+                .code {
+                    padding: 10px;
+
+                }
+            }
+
+            .description-input {
+                width: 100%;
+                transform: translateY(30px);
+
+                .description {
+                    padding: 10px;
+                    resize: none;
+
+                }
+
+
+            }
+        }
+
+    }
+
+    input {
+        background-color: #ecd8d8;
+        box-shadow: inset 0px 0px 3px 3px #00000025;
+        border-radius: 5px;
+        width: 100%;
+        font-size: 1rem;
+        font-style: italic;
+        transform: translateY(5px);
+
+    }
+
+    
+
+    textarea {
+        background-color: #ecd8d8;
+        box-shadow: inset 0px 0px 3px 3px #00000025;
+        border-radius: 5px;
+        width: 100%;
+        height: 200px;
+        font-size: 1rem;
+        font-style: italic;
+        transform: translateY(5px);
+    }
+
+
+
+    .display {
+        height: 440px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        background-color: #bbd2e9;
+        border-radius: 20px;
+        box-shadow: 15px 15px 15px -1px #0000007a;
+
+    }
+}
