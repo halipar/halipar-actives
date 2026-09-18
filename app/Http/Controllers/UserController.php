@@ -12,9 +12,9 @@ class UserController extends Controller
     }
 
     public function regis(Request $request){
-
         Actives::create([
-            'code'=>($request->code),
+            'name'=>($request->name),
+            'sector'=>($request->sector),
             'description'=>($request->description)
         ]);
         
