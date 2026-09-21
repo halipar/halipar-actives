@@ -9,7 +9,7 @@ const errorAlert = document.querySelector(".alert-danger");
 
 
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
 
     e.preventDefault();
 
@@ -21,22 +21,49 @@ form.addEventListener('submit', (e) => {
             text: "Todos os campos precisam ser preenchidos! ",
         });
 
-    } else {
-        Swal.fire({
-            title: "Sucesso!",
-            text: "O Ativo foi cadastrado com sucesso!",
-            icon: "success"
-        }).then((result)=> {
-            if(result.isConfirmed || result.isDismissed){
-                form.submit();
-            }
-            
-        });
+        return;
+
     }
 
+    const formData = new FormData(form);
+    const token = document.querySelector('input[name="_token"]').value; // aqui ele está puxando la do home.blade, mas lá está declarado utilizando o @csrf
 
+    try {
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': token
+            }
+        });
 
+        const data = await response.json(); //aqui está buscando la no UserController.php o jason que criei
 
+        if (response.ok) { //o .ok só funciona pq eu coloquei para retortar o codigo padrão 200 la no response do UserController 
+            Swal.fire({
+                title: "Sucesso!",
+                text: data.message || "O Ativo foi cadastrado com sucesso!",
+                icon: "success"
+            }).then(() => {
+                form.reset(); // uso o reset para resetar o form sem recarregar a página
+            });
+        } else {
+            // aqui é para caso o usuário consiga inserir dados que o laravel regeite
+            Swal.fire({
+                icon: "error",
+                title: "Atenção",
+                text: data.message || "Não foi possível cadastrar o ativo."
+            });
+        }
+
+    } catch (error) { //para conseguir testar esse erro de conexção é só tirar la o codigo 200 do response no UserController 
+        Swal.fire({
+            icon: "error",
+            title: "Erro de conexão",
+            text: "Não foi possível comunicar com o servidor."
+        });
+    }
 
 })
 

@@ -18,6 +18,9 @@ class UserController extends Controller
             'description'=>($request->description)
         ]);
         
-        return redirect()->back()->with('success','');
+        return response()->json([
+            'status' => 'success',
+            'message'=> 'Ativo cadastrado com sucesso!'
+        ], 200); //esse 200 é um codigo de status que representa ok / sucesso, mas ja é declarado por padrão no laravel caso de certo que o status seja 200, então mesmo se tirar esse codigo daí, será possivel realizar cadastros. Só deixei ai porque vi que é uma boa prática
     }
 }

@@ -29,6 +29,7 @@
 
                 <form class="register-form" action="{{ Route('registrations') }}" method="post">
                     @csrf
+                    {{--aqui nesse @csrf ele declara um token que pode ser chamado pelo '_token', é padrão--}}
 
 
 
