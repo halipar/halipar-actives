@@ -34,20 +34,20 @@ class UserController extends Controller
         } catch (QueryException $e) {
             //throw $th;
             return response()->json([
-                'status' => 'Error1',
+                'status' => 'dbError',
                 'logError' => $e->getMessage(),
                 "code"=>$e->getCode(),
-                "message" => 'Erro de banco'
-            ], $e->getCode());
+                "message" => 'Você passou do limite de caracteres na descrição (max 250)'
+            ], 500);
 
         } catch (Exception $e) {
             //throw $th;
             //throw $th;
             return response()->json([
-                'status' => 'Error2',
+                'status' => 'connectionError',
                 'logError' => $e->getMessage(),
                 "code"=>$e->getCode(),
-                "message" => 'Erro de execução'
+                "message" => 'Erro de conecção.'
             ], 500);
 
         }

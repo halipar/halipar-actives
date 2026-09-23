@@ -53,18 +53,18 @@ form.addEventListener('submit', async (e) => {
 
             Swal.fire({
                 icon: "error",
-                title: data.response.data.status,
-                text: data.response.data.message
+                title: data.status,
+                text: data.message
             });
                console.log("Passei 4");
         }
     } catch (error) { //para conseguir testar esse erro de conexção é só tirar la o codigo 200 do response no UserController
 console.log(error);
-       console.log("Passei 2");
+       
         Swal.fire({
             icon: "error",
-            title: error.response.data.status,
-            text: error.response.data.message
+            title: 'Atenção!',
+            text: 'Erro de conexão.'
         });
     }
 
