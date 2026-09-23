@@ -11,7 +11,8 @@ const errorAlert = document.querySelector(".alert-danger");
 
 form.addEventListener('submit', async (e) => {
 
-    e.preventDefault();
+    try {
+        e.preventDefault();
 
     if (!actives.value || !sector.value || !description.value) {
 
@@ -28,19 +29,17 @@ form.addEventListener('submit', async (e) => {
     const formData = new FormData(form);
     const token = document.querySelector('input[name="_token"]').value; // aqui ele está puxando la do home.blade, mas lá está declarado utilizando o @csrf
 
-    try {
         const response = await fetch(form.action, {
             method: 'POST',
-            body: formData,
+            body: formData, //o nosso token já é verificado aqui
             headers: {
                 'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': token
+                'X-CSRF-TOKEN': token //deixar o token no header por boa prática
             }
         });
 
         const data = await response.json(); //aqui está buscando la no UserController.php o jason que criei
-
-        if (response.ok) { //o .ok só funciona pq eu coloquei para retortar o codigo padrão 200 la no response do UserController 
+        if (response.ok) { //o .ok só funciona pq eu coloquei para retortar o codigo padrão 200 la no response do UserController
             Swal.fire({
                 title: "Sucesso!",
                 text: data.message || "O Ativo foi cadastrado com sucesso!",
@@ -48,20 +47,24 @@ form.addEventListener('submit', async (e) => {
             }).then(() => {
                 form.reset(); // uso o reset para resetar o form sem recarregar a página
             });
+
         } else {
             // aqui é para caso o usuário consiga inserir dados que o laravel regeite
+
             Swal.fire({
                 icon: "error",
-                title: "Atenção",
-                text: data.message || "Não foi possível cadastrar o ativo."
+                title: data.response.data.status,
+                text: data.response.data.message
             });
+               console.log("Passei 4");
         }
-
-    } catch (error) { //para conseguir testar esse erro de conexção é só tirar la o codigo 200 do response no UserController 
+    } catch (error) { //para conseguir testar esse erro de conexção é só tirar la o codigo 200 do response no UserController
+console.log(error);
+       console.log("Passei 2");
         Swal.fire({
             icon: "error",
-            title: "Erro de conexão",
-            text: "Não foi possível comunicar com o servidor."
+            title: error.response.data.status,
+            text: error.response.data.message
         });
     }
 

@@ -1,5 +1,5 @@
 html {
-    background-color: #ffeded;
+    background-color: #0D1116;
 }
 
 * {
@@ -29,7 +29,7 @@ section {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #8CAE5B;
+    background-image: linear-gradient(to bottom right, #122631, #122733);
 
 
 
@@ -38,7 +38,6 @@ section {
         width: 100%;
         display: flex;
         flex-direction: column;
-        background-color: #ecd8d8;
         justify-content: center;
         align-items: center;
         position: relative;
@@ -68,28 +67,13 @@ section {
             z-index: 1;
 
             label {
+                color: #E7EAF0;
                 font-size: 1.2rem;
                 font-weight: bold;
 
             }
 
-            button {
-                background-color: rgb(119, 119, 119);
-                padding: 10px;
-                text-align: center;
-                transform: translateY(25px);
-                border-radius: 8px;
-                align-self: self-start;
-                color: #fff;
-                font-weight: bold;
-                transition: 0.3s;
-            }
-
-            button:hover {
-                background-color: rgb(160, 159, 159);
-                cursor: pointer;
-                box-shadow: 0px 0px 2px 2px #0000007a;
-            }
+            
 
             .selectors-container {
                 width: 100%;
@@ -145,32 +129,14 @@ section {
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23E92D1D' d='M 0,200 L 0,0 C 100,100 150,50 200,200 Z'/%3E%3C/svg%3E");
     }
 
-    input {
-        background-color: #ecd8d8;
-        box-shadow: inset 0px 0px 3px 3px #00000025;
-        border-radius: 5px;
-        width: 100%;
-        font-size: 1rem;
-        font-style: italic;
-        transform: translateY(5px);
-
-    }
+    
 
 
   
 
 
 
-    textarea {
-        background-color: #ecd8d8;
-        box-shadow: inset 0px 0px 3px 3px #00000025;
-        border-radius: 5px;
-        width: 100%;
-
-        font-size: 1rem;
-        font-style: italic;
-        transform: translateY(5px);
-    }
+    
 
 
 

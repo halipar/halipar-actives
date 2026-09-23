@@ -3,24 +3,55 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actives;
+use Exception;
+use Illuminate\Database\QueryException as QueryException;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('home');
     }
 
-    public function regis(Request $request){
-        Actives::create([
-            'name'=>($request->name),
-            'sector'=>($request->sector),
-            'description'=>($request->description)
-        ]);
-        
-        return response()->json([
-            'status' => 'success',
-            'message'=> 'Ativo cadastrado com sucesso!'
-        ], 200); //esse 200 é um codigo de status que representa ok / sucesso, mas ja é declarado por padrão no laravel caso de certo que o status seja 200, então mesmo se tirar esse codigo daí, será possivel realizar cadastros. Só deixei ai porque vi que é uma boa prática
+    public function regis(Request $request)
+    {
+
+        try {
+
+            Actives::create([
+                'name' => ($request->name),
+                'sector' => ($request->sector),
+                'description' => ($request->description)
+            ]);
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Ativo cadastrado com sucesso!'
+            ], 200);
+            
+
+        } catch (QueryException $e) {
+            //throw $th;
+            return response()->json([
+                'status' => 'Error1',
+                'logError' => $e->getMessage(),
+                "code"=>$e->getCode(),
+                "message" => 'Erro de banco'
+            ], $e->getCode());
+
+        } catch (Exception $e) {
+            //throw $th;
+            //throw $th;
+            return response()->json([
+                'status' => 'Error2',
+                'logError' => $e->getMessage(),
+                "code"=>$e->getCode(),
+                "message" => 'Erro de execução'
+            ], 500);
+
+        }
+
+        //esse 200 é um codigo de status que representa ok / sucesso, mas ja é declarado por padrão no laravel caso de certo que o status seja 200, então mesmo se tirar esse codigo daí, será possivel realizar cadastros. Só deixei ai porque vi que é uma boa prática
     }
 }
