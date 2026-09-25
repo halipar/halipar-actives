@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import $ from 'jquery';
 
 const actives = document.querySelector(".name");
 const sector = document.querySelector(".sector");
@@ -7,76 +8,58 @@ const form = document.querySelector("form");
 
 const errorAlert = document.querySelector(".alert-danger");
 
-
-
-form.addEventListener('submit', async (e) => {
-
-    try {
-        e.preventDefault();
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
     if (!actives.value || !sector.value || !description.value) {
-
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Todos os campos precisam ser preenchidos! ",
+            text: "Todos os campos precisam ser preenchidos!",
         });
-
         return;
-
     }
 
-    const formData = new FormData(form);
-    const token = document.querySelector('input[name="_token"]').value; // aqui ele está puxando la do home.blade, mas lá está declarado utilizando o @csrf
+    const formdata = new FormData(form);
+    const token = document.querySelector('input[name="_token"]').value;
 
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: formData, //o nosso token já é verificado aqui
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': token //deixar o token no header por boa prática
-            }
-        });
 
-        const data = await response.json(); //aqui está buscando la no UserController.php o jason que criei
-        if (response.ok) { //o .ok só funciona pq eu coloquei para retortar o codigo padrão 200 la no response do UserController
+
+    $.ajax({
+        url: form.action,
+        type: 'POST',
+        data: formdata,
+        processData: false,
+        contentType: false,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': token
+        },
+        success: function (data) {
+
             Swal.fire({
                 title: "Sucesso!",
-                text: data.message || "O Ativo foi cadastrado com sucesso!",
+                text: data.message,
                 icon: "success"
-            }).then(() => {
-                form.reset(); // uso o reset para resetar o form sem recarregar a página
-            });
 
-        } else {
-            // aqui é para caso o usuário consiga inserir dados que o laravel regeite
+            }).then(() => { form.reset(); });
+        },
+        error: function (xhr) { //o xhr serve como abreviação para XMLHttpRequest, ou seja, não é usando apenas para o bloco de erro, mas como coloquei ele no erro, isso fará com que todas as requisições que não forem um success serão tidas como um erro.
 
-            Swal.fire({
-                icon: "error",
-                title: data.status,
-                text: data.message
-            });
-               console.log("Passei 4");
+            if (xhr.responseJSON) {
+                Swal.fire({
+                    icon: "error",
+                    title: xhr.responseJSON.status || "Erro!",
+                    text: xhr.responseJSON.message 
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Atenção!",
+                    text: "Erro de conexão. Verifique sua rede ou servidor."
+                });
+            }
         }
-    } catch (error) { //para conseguir testar esse erro de conexção é só tirar la o codigo 200 do response no UserController
-console.log(error);
-       
-        Swal.fire({
-            icon: "error",
-            title: 'Atenção!',
-            text: 'Erro de conexão.'
-        });
-    }
-
+    });
 })
 
-/* function toggleActive(){
-    contentSelect.classList.toggle("active")
-
-    if(contentSelect.classList.contains("active")){
-        inputSelect.focus();
-        iconSelect.classList.value = " ";
-    } else{
-        iconSelect.classList.value = "x";
-    }
-}*/
