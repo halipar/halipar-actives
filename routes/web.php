@@ -7,4 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/create-regis', [UserController::class,'create'])->name('create.regis');
+Route::post('registrations', [UserController::class,'regis']) -> name('registrations');
+Route::get('home', [UserController::class,'index']);
