@@ -1,0 +1,25 @@
+.login-view{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container{
+    width: 400px ;
+    height: 500px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.login-title{
+    height: 35%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

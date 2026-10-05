@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('actives', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('store_id')->constrained();
+            $table->foreignId('sector_id')->constrained();
             $table->string('name');
-            $table->string('sector');
             $table->string('heritage')->unique(); 
             $table->timestamps();
         });

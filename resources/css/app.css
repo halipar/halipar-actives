@@ -1,4 +1,5 @@
 @import './home.css';
+@import './loginViewStyle.css';
 @import './selects.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';

@@ -9,3 +9,5 @@ Route::get('/', function () {
 
 Route::post('registrations', [UserController::class,'regis']) -> name('registrations');
 Route::get('home', [UserController::class,'index']);
+
+Route::view('login', 'loginView');
