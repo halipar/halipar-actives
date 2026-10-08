@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('actives', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('sector');
-            $table->string('description', 10); 
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
@@ -24,7 +22,7 @@ return new class extends Migration
      * Reverse the migrations.
      */
     // public function down(): void
-   // {
-   //     
-   // }
+    // {
+    //     //
+    // }
 };

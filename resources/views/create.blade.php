@@ -33,35 +33,36 @@
 
 
                     <div class="selectors-container">
-                        <label for="name">Escolha o Ativo</label>
+                        <label for="type_active_id">Escolha o Ativo</label>
 
-                        <select class="name  form-select form-select-lg mb-3" aria-label="Large select example"
-                            name="name" id="name">
-                            <option value="">Selecione...</option>
-                            <option value="impessora">Impessora</option>
-                            <option value="monitor">Monitor</option>
-                            <option value="tablet">Tablet</option>
+                        <select class="type_active  form-select form-select-lg mb-3" aria-label="Large select example"
+                            name="type_active_id" id="type_active_id">
+                            <option value="" class="teste">Selecione...</option>
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}">
+                                    {{ucfirst($type->name) }}
+                                </option>
+                            @endforeach
                         </select>
 
-                        <label for="sector">Escolha o Setor</label>
+                        <label for="sector_id">Escolha o Setor</label>
 
                         <select class="sector form-select form-select-lg mb-3" aria-label="Large select example"
-                            name="sector" id="sector">
+                            name="sector_id" id="sector_id">
                             <option value="" class="teste">Selecione...</option>
-                            <option value="cozinha">Cozinha</option>
-                            <option value="bar">Bar</option>
-                            <option value="salao">Salão</option>
+                            @foreach ($sectors as $sector)
+                            <option value="{{$sector->id}}">
+                                {{ucfirst($sector->name)}}
+                            </option>
+                            @endforeach
+                            
                         </select>
 
+                        <label for="code">Insira o codigo de patente</label>
+                        <input type="text" name="code" id="code" class="code" maxlength="250">
 
 
-                    </div>
 
-                    <div class="description-input">
-                        <label for="description">Descrição</label>
-                        <textarea class="description" name="description" id="description"
-                            placeholder="Digite a descrição do produto
-Max caracteres: 250" resize="none"></textarea>
                     </div>
 
                     <button id="btnRegis" type="submit">Cadastrar</button>

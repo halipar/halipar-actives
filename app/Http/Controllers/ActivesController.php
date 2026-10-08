@@ -3,26 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actives;
+use App\Models\Sector;
+use App\Models\TypeActive;
 use Exception;
-use Illuminate\Database\QueryException as QueryException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ActivesController extends Controller
 {
-    public function index()
-    {
-        return view('home');
+
+
+    public function index(){
+        $types = TypeActive::all();
+        
+
+        return view(compact('types') );
     }
 
-    public function regis(Request $request)
-    {
+    public function create(){
+
+        $types = TypeActive::all();    
+        $sectors = Sector::all();
+        return view('create', compact('types', 'sectors'));
+    }
+
+    public function store(Request $request){
+
+    // dd($request->all());
 
         try {
 
             Actives::create([
-                'name' => ($request->name),
-                'sector' => ($request->sector),
-                'description' => ($request->description)
+                'sector_id' => ($request->sector_id),
+                'type_active_id' => ($request->type_active_id),
+                'code' => ($request->code),
             ]);
 
             return response()->json([
@@ -51,7 +65,6 @@ class UserController extends Controller
             ], 500);
 
         }
-
-        //esse 200 é um codigo de status que representa ok / sucesso, mas ja é declarado por padrão no laravel caso de certo que o status seja 200, então mesmo se tirar esse codigo daí, será possivel realizar cadastros. Só deixei ai porque vi que é uma boa prática
     }
+
 }

@@ -1,17 +1,20 @@
 import Swal from 'sweetalert2'
 import $ from 'jquery';
 
-const actives = document.querySelector(".name");
-const sector = document.querySelector(".sector");
-const description = document.querySelector(".description");
+const actives = document.querySelector("#type_active_id");
+const sector = document.querySelector("#sector_id");
+const code = document.querySelector("#code");
 const form = document.querySelector("form");
 
 const errorAlert = document.querySelector(".alert-danger");
 
+
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (!actives.value || !sector.value || !description.value) {
+
+    if (!actives.value || !sector.value || !code.value) {
         Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -50,7 +53,7 @@ form.addEventListener('submit', (e) => {
                 Swal.fire({
                     icon: "error",
                     title: xhr.responseJSON.status || "Erro!",
-                    text: xhr.responseJSON.message 
+                    text: xhr.responseJSON.message
                 });
             } else {
                 Swal.fire({

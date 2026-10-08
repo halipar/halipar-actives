@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        #lembrar de descobrir como deletar a tabela pelo php
-        #Schema::drop('table'); --> Deleta sem fazer uma verificação prévia
-        Schema::dropIfExists('products'); #primeiro verifica depois deleta
+        Schema::create('sectors', function (Blueprint $table) {
+            $table->id();
+            $table->string('name'); 
+            $table->timestamps();
+        });
     }
 
     /**
@@ -21,6 +23,6 @@ return new class extends Migration
      */
     // public function down(): void
     // {
-    //     
+    //     //
     // }
 };
