@@ -9,7 +9,7 @@ class TypeActive extends Model
 {
     protected $table = 'type_actives';
     protected $fillable = [
-        'name',
+        'type',
         'category_id'
     ];
 
