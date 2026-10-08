@@ -38,9 +38,9 @@
                         <select class="type_active  form-select form-select-lg mb-3" aria-label="Large select example"
                             name="type_active_id" id="type_active_id">
                             <option value="" class="teste">Selecione...</option>
-                            @foreach ($types as $item)
-                                <option value="{{ $item->id }}">
-                                    {{ucfirst($item->type) }}
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}">
+                                    {{ucfirst($type->name) }}
                                 </option>
                             @endforeach
                         </select>

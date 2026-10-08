@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('type_actives', function (Blueprint $table) {
             $table->id();
-            $table->string('type')->unique();
+            $table->string('name')->unique();
             $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
