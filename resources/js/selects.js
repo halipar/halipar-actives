@@ -13,12 +13,6 @@ const errorAlert = document.querySelector(".alert-danger");
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    console.log(actives);
-    console.log(actives.value);
-    console.log(sector);
-    console.log(sector.value);
-    console.log(code);
-    console.log(code.value);
 
     if (!actives.value || !sector.value || !code.value) {
         Swal.fire({
