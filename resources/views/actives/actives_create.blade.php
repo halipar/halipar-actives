@@ -17,8 +17,6 @@
                 @csrf
                 {{-- aqui nesse @csrf ele declara um token que pode ser chamado pelo '_token', é padrão --}}
 
-
-
                 <div class="selectors-container">
                     <label for="type_active_id">Escolha o Ativo</label>
 
