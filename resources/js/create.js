@@ -8,7 +8,7 @@ if (regisCont) {
     const actives = document.querySelector("#type_active_id");
     const sector = document.querySelector("#sector_id");
     const code = document.querySelector("#code");
-    const form = document.querySelector("form");
+    const form = document.querySelector(".register-form");
 
     const errorAlert = document.querySelector(".alert-danger");
 
@@ -50,7 +50,7 @@ if (regisCont) {
                     icon: "success"
 
                 }).then(() => {
-                    // Recarrega a página assim que o alerta é fechado
+                    
                     location.reload();
                 });
             },
