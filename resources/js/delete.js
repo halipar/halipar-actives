@@ -32,7 +32,10 @@ async function deleteActive(activeId) {
                         title: data.status,
                         text: data.message,
                         icon: "success"
+                    }).then(() => {
+                        activeId.closest('tr').remove();
                     });
+                    
 
                 },
                 error: function (xhr) { 

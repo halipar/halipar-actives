@@ -84,7 +84,9 @@ class ActivesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $active = $this->active->findOrFail($id);
+        $sectors = $this->sector->all();
+        return view('actives/actives_edit', ['active' => $active, 'sectors' => $sectors]);
     }
 
     /**
@@ -92,7 +94,21 @@ class ActivesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $updated = $this->active->where('id', $id)->update(['sector_id'=> $request->sector_id]);
+
+            
+            return response()->json([
+                'status' => 'Sucesso',
+                'message' => 'Ativo atualizado com sucesso!'
+            ], 200);;
+            
+        } catch (Exception $te) {
+            return response()->json([
+                'status' => 'Erro',
+                "message" => 'O ativo não foi editado.'
+            ], 500);
+        }
     }
 
     /**

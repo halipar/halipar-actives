@@ -1,7 +1,7 @@
-@extends('master')
+@extends('actives/master')
+
 
 @section('content')
-
     <div class="edit-container">
         <h2>Cadastro de ativos</h2>
 
@@ -11,30 +11,26 @@
 
 
 
-            <form class="register-form" action="{{ Route('actives.store') }}" method="post">
+            <form class="edit-form" action="{{ Route('actives.update', ['active' => $active]) }}" method="post">
                 @csrf
                 {{-- aqui nesse @csrf ele declara um token que pode ser chamado pelo '_token', é padrão --}}
-
-
-
+                <input type="hidden" name="_method" value="PUT">
                 <div class="selectors-container">
-                    <label for="type_active_id">Escolha o Ativo</label>
 
-                    <select class="type_active  form-select form-select-lg mb-3" aria-label="Large select example"
-                        name="type_active_id" id="type_active_id">
-                        <option value="" class="teste">Selecione...</option>
-                        @foreach ($types as $type)
-                            <option value="{{ $type->id }}">
-                                {{ ucfirst($type->name) }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <div class="fields">
+                        <h5>Identi ficação do ativo: {{$active->id }}</h5>
+                        <h5>Tipo do ativo: {{$active->typeActive->name }}</h5>
+                        <h5>Código de patente: {{$active->code }}</h5>
+
+                    </div>
 
                     <label for="sector_id">Escolha o Setor</label>
 
-                    <select class="sector form-select form-select-lg mb-3" aria-label="Large select example"
-                        name="sector_id" id="sector_id">
-                        <option value="" class="teste">Selecione...</option>
+                    <select class="sector form-select form-select-lg mb-3" aria-label="Large select example" name="sector_id"
+                        id="sector_id">
+
+                        <option value="{{$active->sector->id}}" class="teste">{{ ucfirst($active->sector->name) }}</option>
+
                         @foreach ($sectors as $sector)
                             <option value="{{ $sector->id }}">
                                 {{ ucfirst($sector->name) }}
@@ -43,14 +39,12 @@
 
                     </select>
 
-                    <label for="code">Insira o codigo de patente</label>
-                    <input type="text" name="code" id="code" class="code" maxlength="250">
 
 
 
                 </div>
 
-                <button id="btnRegis" type="submit">Cadastrar</button>
+                <button class="btn btn-success" type="submit" >Salvar</button>
 
             </form>
 

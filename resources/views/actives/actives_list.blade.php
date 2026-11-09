@@ -24,7 +24,7 @@
                         <td>{{ $active->typeActive->name }}</td>
                         <td>{{ $active->code }}</td>
                         <td><button type="button" class="btn btn-danger" data-id="{{$active->id}}" data-url="{{ route('actives.destroy', $active->id) }}">Excluir</button></td>
-                        <td><button type="button" class="btn btn-warning" data-id="{{$active->id}}">Editar</button></td>
+                        <td><a href="{{ route('actives.edit', $active->id) }}" class="btn btn-warning">Editar</a></td>
                     </tr>
                     @endforeach
                 
