@@ -80,7 +80,7 @@ class TypeActivesSeeder extends Seeder
 
             foreach ($types as $type) {
                 TypeActive::firstOrCreate([
-                    'type'        => $type,
+                    'name'        => $type,
                     'category_id' => $category->id,
                 ]);
             }

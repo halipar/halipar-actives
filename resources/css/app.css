@@ -1,6 +1,14 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'sweetalert2/dist/sweetalert2.min.css';
 @import './home.css';
-@import './loginViewStyle.css';
+@import './master.css';
 @import './selects.css';
+@import './list.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+
+
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -11,3 +19,6 @@
 }
 
 
+.table td{
+    padding-left: 15px;
+}
