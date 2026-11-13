@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pc;
 use Illuminate\Http\Request;
 
 class PcController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
+    public readonly Pc $pc;
+
+    public function __construct(){
+        $this->pc = new Pc();
+    }
+
+
     public function index()
     {
-        return view('sys-catalogue/sys_home');
+        $pcs = $this->pc->all();
+        return view('sys-catalogue/sys_home', ['pcs' => $pcs]);
     }
 
     /**
