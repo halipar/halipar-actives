@@ -16,8 +16,12 @@
     <div class="master-container">
         
         <div class="nav-bar">
+           
             <a class="nav-link" href="{{ route('actives.create') }}">Cadastrar</a>
             <a class="nav-link" href="{{ route('actives.index') }}">Listagem</a>
+            <a class="nav-link" href="{{ route('sys.index') }}">SysCatalogue</a>
+
+
         </div>
         <div class="content-container">
             @yield('content')

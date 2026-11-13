@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SectorSeeder::class,
             TypeActivesSeeder::class,
             CategoriesSeeder::class,
+            PcSeeder::class,
         ]);
     }
 }
