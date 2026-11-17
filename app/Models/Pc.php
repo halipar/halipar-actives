@@ -9,24 +9,33 @@ class Pc extends Model
 {
     use HasFactory;
 
-    protected $table ='pcs';
+    protected $table = 'pcs';
 
     protected $fillable = [
-        'ip',
-        'os',
-        'cpu_name',
-        'number_of_cores',
-        'number_of_logical_processors',
-        'cpu_max_clock_speed',
-        'cpu_data_width',
-        'ram_total',
-        'ram_used',
-        'ram_free',
-        'disk_total',
-        'disk_used',
-        'disk_free',
-        'gpu_name',
-        'gpu_memory_total',
-        'status',
+        'admin_server',
+        'group_id',
+        'device_name',
+        'inventory_status',
+        'motherboard',
+        'cpu',
+        'memory_mb',
+        'storage_details',
+        'total_gb',
+        'available_gb',
+        'video_adapter',
+        'network_controller',
+        'sound_card',
+        'optical_drive',
+        'monitor',
+        'ip_address',
+        'ipv6_address',
     ];
+
+    /**
+     * Relacionamento com a model Group.
+     */
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
 }

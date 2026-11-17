@@ -15,10 +15,16 @@ class PcController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $pcs = $this->pc->all();
-        return view('sys-catalogue/sys_home', ['pcs' => $pcs]);
+        $pcs = PC::when($request->search, function ($query, $search){
+            
+            $cleanSearch = str_replace('.','', $search);
+            return $query->whereRaw("REPLACE(ip_address, '.', '') LIKE ?", ['%'.$cleanSearch.'%']);
+
+        })->get();
+
+        return view('sys-catalogue/sys_home', compact('pcs'));
     }
 
     /**
