@@ -32,42 +32,128 @@
                                 <td>{{ $pc->available_gb }}</td>
 
                                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModalCenter" data-id="{{ $pc->ip }}">
+                                        data-bs-target=".sys-modal" data-admin-server="{{ $pc->admin_server }}"
+                                        data-group="{{ $pc->group->name }}" data-device-name="{{ $pc->device_name }}"
+                                        data-inventory-status="{{ $pc->inventory_status }}"
+                                        data-motherboard="{{ $pc->motherboard }}" data-cpu="{{ $pc->cpu }}"
+                                        data-memory-mb="{{ $pc->memory_mb }}"
+                                        data-storage-details="{{ $pc->storage_details }}"
+                                        data-total-gb="{{ $pc->total_gb }}" data-available-gb="{{ $pc->available_gb }}"
+                                        data-video-adapter="{{ $pc->video_adapter }}"
+                                        data-network-controller="{{ $pc->network_controller }}"
+                                        data-sound-card="{{ $pc->sound_card }}"
+                                        data-optical-drive="{{ $pc->optical_drive }}" data-monitor="{{ $pc->monitor }}"
+                                        data-ip-address="{{ $pc->ip_address }}"
+                                        data-ipv6-address="{{ $pc->ipv6_address }}">
                                         Mostrar mais
                                     </button></td>
 
-                                
+
                             </tr>
                         @endforeach
+                    </tbody>
+                </table>
+                <!-- Button trigger modal -->
 
 
-                        <!-- Button trigger modal -->
 
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1"
-                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                                        <!-- Correção: Usando btn-close padrão do Bootstrap 5 -->
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- Correção: data-bs-dismiss em vez de data-dismiss -->
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
+
+
+
+            </div>
+        </div>
+
+
+<!-------------------------- Modal -->
+
+        <div class="modal fade sys-modal" id="exampleModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">sair</button>
+
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                                <tr>
+                                    <th style="width: 35%;">IP da Máquina:</th>
+                                    <td id="modal-ip"></td>
+                                </tr>
+                                <tr>
+                                    <th>Endereço IPv6:</th>
+                                    <td id="modal-ipv6"></td>
+                                </tr>
+                                <tr>
+                                    <th>Nome do Dispositivo:</th>
+                                    <td id="modal-device-name"></td>
+                                </tr>
+                                <tr>
+                                    <th>Grupo:</th>
+                                    <td id="modal-group"></td>
+                                </tr>
+                                <tr>
+                                    <th>Servidor Admin:</th>
+                                    <td id="modal-admin-server"></td>
+                                </tr>
+                                <tr>
+                                    <th>Status de Inventário:</th>
+                                    <td id="modal-inventory-status"></td>
+                                </tr>
+                                <tr>
+                                    <th>Processador (CPU):</th>
+                                    <td id="modal-cpu"></td>
+                                </tr>
+                                <tr>
+                                    <th>Placa-Mãe:</th>
+                                    <td id="modal-motherboard"></td>
+                                </tr>
+                                <tr>
+                                    <th>Memória Total (MB):</th>
+                                    <td id="modal-memory-mb"></td>
+                                </tr>
+                                <tr>
+                                    <th>Armazenamento (GB):</th>
+                                    <td id="modal-total-gb"></td>
+                                </tr>
+                                <tr>
+                                    <th>Detalhes de Armazenamento:</th>
+                                    <td id="modal-storage-details"></td>
+                                </tr>
+                                <tr>
+                                    <th>Adaptador de Vídeo:</th>
+                                    <td id="modal-video-adapter"></td>
+                                </tr>
+                                <tr>
+                                    <th>Controlador de Rede:</th>
+                                    <td id="modal-network-controller"></td>
+                                </tr>
+                                <tr>
+                                    <th>Placa de Som:</th>
+                                    <td id="modal-sound-card"></td>
+                                </tr>
+                                <tr>
+                                    <th>Drive Óptico:</th>
+                                    <td id="modal-optical-drive"></td>
+                                </tr>
+                                <tr>
+                                    <th>Monitor:</th>
+                                    <td id="modal-monitor"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+
+
+                    </div>
+                </div>
             </div>
         </div>
     @endsection
