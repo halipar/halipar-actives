@@ -69,6 +69,7 @@
 <!-------------------------- Modal -->
 
         <div class="modal fade sys-modal" id="exampleModal" tabindex="-1" role="dialog"
+        
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -80,7 +81,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped sys-table">
                             <tbody>
                                 <tr>
                                     <th style="width: 35%;">IP da Máquina:</th>

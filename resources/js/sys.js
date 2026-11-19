@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var monitor = button.getAttribute('data-monitor');
 
         //aqui eu aviso que os textos da tabela do MODAL devem ser iguais aos valores obtidos pelas variaiveis acima ou caso não tenha nenhum valor deve aparecer -
+
         document.getElementById('modal-ip').textContent = ipAddress || '-';
         document.getElementById('modal-ipv6').textContent = ipv6Address || '-';
         document.getElementById('modal-group').textContent = group || '-';
@@ -45,6 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('modal-sound-card').textContent = soundCard || '-';
         document.getElementById('modal-optical-drive').textContent = opticalDrive || '-';
         document.getElementById('modal-monitor').textContent = monitor || '-';
+
+       
         
     })
 

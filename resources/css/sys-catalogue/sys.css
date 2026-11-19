@@ -77,6 +77,18 @@
     color: #414040;
 }
 
-.modal{
-    color: #414040;
+.modal-dialog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.modal-content{
+    width: max-content;
+}
+
+sys-table, td{
+    max-width: 800px;
+   overflow-y: auto;
 }
